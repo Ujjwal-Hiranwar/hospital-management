@@ -1,9 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-import Navigation from './landing page/Navigation';
+import React from 'react';
+
+import Navigation from './components/landing page/Navigation';
+
+
+
 function App() {
   return (
-    <Navigation />
+    <div className="App">
+   <Navigation src=""/>
+   
+    </div>
   );
 }
 
