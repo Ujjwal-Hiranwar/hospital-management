@@ -1,5 +1,5 @@
 const loginSubmit = async (req,res)=>{
-    res.send("your form is submitted")
+    console.log(req.body);
 }
 const registerSubmit = async (req,res)=>{
     res.send("your register form is submitted")
