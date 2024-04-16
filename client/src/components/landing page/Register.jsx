@@ -1,9 +1,25 @@
 import React from 'react'
+import { useState } from 'react'
 
 export default function Register() {
-    const handleChange = ()=>{}
+  const [formData,setFormData] = useState({
+    username : "",
+    email : "",
+    password : ""
+  })
+    const handleChange = (e)=>{
+      let name = e.target.name;
 
-    const handleSubmit = ()=>{}
+    setFormData({
+        ...formData,
+         [name] : e.target.value
+      })
+    }
+
+    const handleSubmit = (e)=>{
+       
+      
+    }
   return (
     <div className="min-h-screen flex items-center bg-gray-500  justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div className="max-w-md w-full space-y-8 border-2 p-8">
@@ -22,7 +38,7 @@ export default function Register() {
               required 
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
               placeholder="Username" 
-            //   value={formData.username} 
+              value={formData.username} 
               onChange={handleChange}
             />
           </div>
@@ -36,7 +52,7 @@ export default function Register() {
               required 
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
               placeholder="Email address" 
-            //   value={formData.email} 
+              value={formData.email} 
               onChange={handleChange}
             />
           </div>
@@ -50,7 +66,7 @@ export default function Register() {
               required 
               className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" 
               placeholder="Password" 
-            //   value={formData.password} 
+              value={formData.password} 
               onChange={handleChange}
             />
           </div>
