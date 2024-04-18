@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { useState } from 'react'
 
 export default function Login() {
@@ -8,14 +9,13 @@ export default function Login() {
         e.preventDefault()
        
         try{
-            const response = await fetch(`http://localhost:8000/loginform`,{
-            method: "POST",
-            headers : {
-                'Content-Type' : "application/json",
-            },
-            body : JSON.stringify({username : user, password : pass})
-        
-          })
+            axios.post(`http://localhost:8000/loginform`,{
+              username : user,
+              password: pass
+            })
+            .then(()=>{
+              console.log("Your data is sent")
+            })
         
         }
         catch(err){

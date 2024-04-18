@@ -1,7 +1,9 @@
 import React from 'react'
+import axios from "axios"
 import { useState } from 'react'
 
 export default function Register() {
+  var flag = false;
   const [formData,setFormData] = useState({
     username : "",
     email : "",
@@ -17,7 +19,21 @@ export default function Register() {
     }
 
     const handleSubmit = (e)=>{
-       
+      e.preventDefault();
+       axios
+       .post(`http://localhost:8000/registerform`,formData)
+       .then((res)=>{
+        console.log("Your data is sent successfully");
+        flag=true;
+       })
+       .catch((err)=>{
+        console.log("error while sending register data to backend")
+       })
+       setFormData({
+          username : "",
+          email : "",
+          password : ""
+       })
       
     }
   return (
@@ -84,3 +100,6 @@ export default function Register() {
   </div>
   )
 }
+/* <div id="successMessage" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-md">
+                Registration successful!
+            </div> */
