@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import Navigation from './Navigation'
 
 export default function Login() {
     let [user,setuser] = useState('')
@@ -13,20 +14,26 @@ export default function Login() {
               username : user,
               password: pass
             })
-            .then(()=>{
-              console.log("Your data is sent")
+            .then((response)=>{
+              if(response.data.Loggedin){
+                window.location.href = "/home"
+              }
+              else{
+                alert(response.data.message);
+              }
+            })
+            .catch((err)=>{
+              console.log("error in login form");
             })
         
         }
         catch(err){
             console.log("not able to send response in backend :"+err)
-        }
-       
-        
-        
+        }  
     }
   return (
     <div>
+      <Navigation/>
        <div className="min-h-screen flex items-center justify-center bg-gray-500 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 border-2 border-black-900 rounded-lg p-16">
         <div>

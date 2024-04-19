@@ -3,8 +3,6 @@ import { Link, Route } from 'react-router-dom'
 import Login from './Login'
 
 export default function Navigation() {
-    
-
       return (
 
 

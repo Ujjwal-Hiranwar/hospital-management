@@ -1,9 +1,10 @@
 import React from 'react'
 import axios from "axios"
 import { useState } from 'react'
+import Navigation from './Navigation';
 
 export default function Register() {
-  var flag = false;
+  
   const [formData,setFormData] = useState({
     username : "",
     email : "",
@@ -20,11 +21,12 @@ export default function Register() {
 
     const handleSubmit = (e)=>{
       e.preventDefault();
-       axios
+      try {
+        axios
        .post(`http://localhost:8000/registerform`,formData)
        .then((res)=>{
         console.log("Your data is sent successfully");
-        flag=true;
+       
        })
        .catch((err)=>{
         console.log("error while sending register data to backend")
@@ -34,9 +36,17 @@ export default function Register() {
           email : "",
           password : ""
        })
+       alert("your data is registerd you are redirected to Sign in")
+       window.location.href = "/loginform"
+      } catch (error) {
+        console.log("Error in sending data to backend "+error)
+      }
+       
       
     }
   return (
+    <>
+    <Navigation />
     <div className="min-h-screen flex items-center bg-gray-500  justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div className="max-w-md w-full space-y-8 border-2 p-8">
       <div>
@@ -98,6 +108,7 @@ export default function Register() {
       </form>
     </div>
   </div>
+  </>
   )
 }
 /* <div id="successMessage" class="hidden mt-4 bg-green-100 border border-green-400 text-green-700 px-4 py-2 rounded-md">

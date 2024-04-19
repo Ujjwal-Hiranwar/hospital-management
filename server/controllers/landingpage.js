@@ -1,16 +1,24 @@
 const user = require('../models/landingpage')
 const loginSubmit = async (req,res)=>{
-    console.log(req.body)
+    
     try {
         const check =await user.findOne({username : req.body.username})
         if(check.password == req.body.password){
-           res.send('Home')
+           res.json({
+            Loggedin : true
+           })
         }
         else{
-            console.log("wrong password or username combination")
+            res.json({
+                message : "wrong password or username combination",
+                Loggedin : false
+            })
         }
     } catch (error) {
-       console.log("Error in authentection") 
+        res.json({
+            message : "The user does not exist in database",
+            Loggedin : false
+        }) 
     }
    
 }
