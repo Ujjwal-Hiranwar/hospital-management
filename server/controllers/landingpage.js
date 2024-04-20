@@ -1,11 +1,14 @@
 const user = require('../models/landingpage')
-const loginSubmit = async (req,res)=>{
-    
+const axios = require('axios')
+const loginSubmit = async (req,res,)=>{
     try {
         const check =await user.findOne({username : req.body.username})
         if(check.password == req.body.password){
            res.json({
-            Loggedin : true
+            Loggedin : true,
+            username : check.username,
+            password : check.password,
+            emailid : check.email
            })
         }
         else{
@@ -20,7 +23,6 @@ const loginSubmit = async (req,res)=>{
             Loggedin : false
         }) 
     }
-   
 }
 const registerSubmit = async (req,res)=>{
     const registerData = {

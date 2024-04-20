@@ -3,20 +3,24 @@ import axios from 'axios'
 import { useState } from 'react'
 import Navigation from './Navigation'
 
-export default function Login() {
+export default function Login(props) {
+    
     let [user,setuser] = useState('')
     let [pass,setpass] = useState('')
     const handleclick =async (e)=>{
         e.preventDefault()
-       
         try{
             axios.post(`http://localhost:8000/loginform`,{
               username : user,
               password: pass
             })
             .then((response)=>{
+              
               if(response.data.Loggedin){
-                window.location.href = "/home"
+                
+                window.location.href = "/home/dashboard"
+                
+                props.setUser(response.data);
               }
               else{
                 alert(response.data.message);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Routes , Route } from 'react-router-dom';
 import Navigation from './components/landing page/Navigation';
 import Login from './components/landing page/Login';
@@ -6,6 +6,7 @@ import Register from './components/landing page/Register';
 import Dashboard from './components/home/Dashboard';
 
 function App() {
+  
   return (
     <div className="App">
       
