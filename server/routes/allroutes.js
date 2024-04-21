@@ -9,6 +9,6 @@ routes.route("/registerform").post(landingController.registerSubmit)
 
 routes.route("/logindata")
 .post(pdashboardController.sendDataToPatientDashboard)
-.get(pdashboardController.sendDataToPatientDashboard)
+
 
 module.exports = routes;

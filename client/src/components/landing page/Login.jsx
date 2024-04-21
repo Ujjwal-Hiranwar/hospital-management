@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
+import { Route , Routes,BrowserRouter } from 'react-router-dom'
 import Navigation from './Navigation'
 
 export default function Login(props) {
@@ -17,10 +18,7 @@ export default function Login(props) {
             .then((response)=>{
               
               if(response.data.Loggedin){
-                
-                window.location.href = "/home/dashboard"
-                
-                props.setUser(response.data);
+                window.location.href = `/home/dashboard/${response.data.username}`
               }
               else{
                 alert(response.data.message);
@@ -37,7 +35,7 @@ export default function Login(props) {
     }
   return (
     <div>
-      <Navigation/>
+      <Navigation />
        <div className="min-h-screen flex items-center justify-center bg-gray-500 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 border-2 border-black-900 rounded-lg p-16">
         <div>
