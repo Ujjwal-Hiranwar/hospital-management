@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Dashnavbar from './Dashnavbar'
 import Sidebar from './Sidebar'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
@@ -10,8 +10,6 @@ import Appointmentform from './Apointmentform'
 
 
 
-
-
 export default function Dashboard() {
   let [showappointments,setshowappointments] = useState(false)
   let [showappointmentform,setshowappointmentform] = useState(false)
@@ -20,22 +18,24 @@ export default function Dashboard() {
     email : "",
   })
   const { username } = useParams();
-  const location = window.location.href;
-  console.log(location)
+  
   
   try {
-   axios.post(`http://localhost:8000/home/logindata`,{
-     key: username
-   })
-   .then(response=>{
-       setUserData({
-         username : response.data.username,
-         email : response.data.email
-       })
-   })
-   .catch((error)=>{
-      console.log(error)
-   })
+    useEffect(()=>{
+      axios.post(`http://localhost:8000/home/dashboard/logindata`,{
+        key: username
+      })
+      .then(response=>{
+          setUserData({
+            username : response.data.username,
+            email : response.data.email
+          })
+      })
+      .catch((error)=>{
+         console.log("Errror in sending data to backend "+error)
+      })
+    },[])
+   
     
   } catch (error) {
    console.log("cannot get response api home/logindata "+error)
@@ -50,11 +50,15 @@ export default function Dashboard() {
          showappointment = {setshowappointments}
          showappointmentform={setshowappointmentform} />
       
-       {showappointments == true ? <Appointmentcard docname="subhraman Swaminarayan"
+       {showappointments == true ? 
+       <div>
+        <p className='text-3xl text-center mt-6'>Your Appointments</p>
+       <Appointmentcard docname="swaroop   Swaminarayan"
         date="April 21, 2024"
         time="10:00 AM"
         appointmentid="123-456-7890"
-        status="Pending" /> : null}
+        status="Pending" /> 
+        </div>: null}
         
        {showappointmentform == true ? <Appointmentform /> : null}
        

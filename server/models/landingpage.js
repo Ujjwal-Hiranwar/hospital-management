@@ -18,7 +18,11 @@ const registerSchema = mongoose.Schema({
     email : {
         type : String,
         required : false
-    }
+    },
+    appointments : [{
+        type : Object,
+        required : false
+    }]
 })
 const user = new mongoose.model("patient",registerSchema);
 module.exports = user;

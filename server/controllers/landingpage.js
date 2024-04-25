@@ -4,6 +4,7 @@ const loginSubmit = async (req,res,)=>{
     try {
         const check =await user.findOne({username : req.body.username})
         if(check.password == req.body.password){
+            
            res.json({
             Loggedin : true,
             username : check.username,

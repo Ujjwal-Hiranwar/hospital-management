@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom'
 export default function Sidebar(props) {
   return (
     <>
-    <div className="h-screen flex bg-gray-100">
+    <div className="h-screen flex bg-gray-100 ">
       
         <div className="flex flex-col">
           {/* Sidebar component */}
-          <div className="bg-gray-800 p-4">
+          <div className="bg-gray-800 p-4 w-72">
             
             <div className="flex items-center space-x-4">
               <img className="h-12 w-12 rounded-full" src="https://via.placeholder.com/150" alt="User" />
@@ -20,7 +20,7 @@ export default function Sidebar(props) {
             </div>
           </div>
           {/* Sidebar navigation */}
-          <div className="bg-gray-700 py-4 flex-grow">
+          <div className="bg-gray-700 py-4 flex-grow w-72">
             <nav className="space-y-1">
               
               <button onClick={()=>{

@@ -12,7 +12,7 @@ app.use(express.json())
 
 
 app.use("/",landingPageRoutes)
-app.use("/home",landingPageRoutes)
+app.use("/home/dashboard",landingPageRoutes)
 
 
 
