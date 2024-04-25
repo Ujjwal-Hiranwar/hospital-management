@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Dashnavbar from './Dashnavbar'
 import Sidebar from './Sidebar'
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import Appointmentcard from './Appointmentcard'
-import Apointmentform from './Apointmentform'
 import Appointmentform from './Apointmentform'
 
 
@@ -16,6 +15,7 @@ export default function Dashboard() {
   let [userdata,setUserData] = useState({
     username : "",
     email : "",
+    appointments : []
   })
   const { username } = useParams();
   
@@ -26,9 +26,11 @@ export default function Dashboard() {
         key: username
       })
       .then(response=>{
+          
           setUserData({
             username : response.data.username,
-            email : response.data.email
+            email : response.data.email,
+            appointments : response.data.appointments
           })
       })
       .catch((error)=>{
@@ -40,30 +42,36 @@ export default function Dashboard() {
   } catch (error) {
    console.log("cannot get response api home/logindata "+error)
   }
-       
+     
   return (
-    <div>   
+    <div>    
         <Dashnavbar />
         <div className='flex flex-row'>
+          
         <Sidebar username={userdata.username}
          emailid={userdata.email} 
          showappointment = {setshowappointments}
          showappointmentform={setshowappointmentform} />
+
+      {showappointments === true ?
+      <div className='flex flex-col' style={{ overflowY: 'scroll', height: '100vh', border: '1px' }}>
+      <p className='text-3xl text-center mt-6'>Your Appointments</p>
+       {showappointments === true ? 
+       userdata.appointments.slice().reverse().map((appointment,index)=>(
       
-       {showappointments == true ? 
-       <div>
-        <p className='text-3xl text-center mt-6'>Your Appointments</p>
-       <Appointmentcard docname="swaroop   Swaminarayan"
-        date="April 21, 2024"
-        time="10:00 AM"
-        appointmentid="123-456-7890"
-        status="Pending" /> 
-        </div>: null}
-        
-       {showappointmentform == true ? <Appointmentform /> : null}
-       
-       
-          
+       <Appointmentcard docname={appointment.Doctorname} 
+       post={appointment.Doctorpost}
+        date={appointment.Date} 
+        time={appointment.Time} 
+        appointmentid="1"
+        status="Not Fixed" 
+        key={index}/> 
+
+))  : null}
+        </div>
+: null}
+       {showappointmentform === true ? <Appointmentform /> : null}
+   
         </div>
   
     </div>
