@@ -26,12 +26,20 @@ export default function Sidebar(props) {
               <button onClick={()=>{
                 props.showappointment(true)
                 props.showappointmentform(false)
-              }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 mt-4 py-2 rounded-md block w-full">Your appointments</button>
+                props.showcancelappointment(false)
+              }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 mt-4 py-2 rounded-md block w-full">Your Appointments</button>
               <button onClick={()=>{
                 props.showappointmentform(true)
                 props.showappointment(false)
-              }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Make appointment</button>
-              <button href="#" className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Our Doctors</button>
+                props.showcancelappointment(false)
+              }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Make Appointment</button>
+             
+             <button onClick={()=>{
+                props.showcancelappointment(true)
+                props.showappointmentform(false)
+                props.showappointment(false)
+             }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Cancel Appointment</button>
+             <button className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Our Doctors</button>
             </nav>
           </div>
         </div>

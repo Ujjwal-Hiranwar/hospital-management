@@ -3,7 +3,17 @@ const axios = require('axios')
 const loginSubmit = async (req,res,)=>{
     try {
         const check =await user.findOne({username : req.body.username})
-        if(check.password == req.body.password){
+        console.log(req.body)
+         if(check.password == req.body.password && req.body.adminid=="8367" ){
+            res.json({
+            isAdmin : true,
+            Loggedin : true,
+            username : check.username,
+            password : check.password,
+            emailid : check.email
+            })
+         }
+       else if(check.password == req.body.password){
             
            res.json({
             Loggedin : true,

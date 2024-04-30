@@ -13,5 +13,7 @@ routes.route("/logindata")
 routes.route("/appointment")
 .post(pdashboardController.sendAppointmentToDatabase)
 
+routes.route("/cancelappointment")
+.post(pdashboardController.deleteAppointment)
 
 module.exports = routes;

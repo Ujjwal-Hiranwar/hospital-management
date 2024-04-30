@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+
 import { BrowserRouter, Routes , Route } from 'react-router-dom';
 import Navigation from './components/landing page/Navigation';
 import Login from './components/landing page/Login';
 import Register from './components/landing page/Register';
 import Dashboard from './components/home/Dashboard';
+import Admindashboard from './components/home/Admindashboard';
+
 
 
 function App() {
@@ -15,13 +17,16 @@ function App() {
       <BrowserRouter>
       <Routes>
         <Route path="" >
-        <Route path='/' element={<Navigation />} />
+        <Route path='/' element={<Login />} />
+        
         <Route path="/services" element={<h1>This is services page</h1>} />
         <Route path="/contact" element={<h1>This is contact us page</h1>} />
         <Route path='/loginform' element={<Login />} />
         <Route path="/register" element={<Register />} />
-        </Route>
-        <Route path="/home/dashboard/:username" element={<Dashboard />} >
+       
+        
+        <Route path="/home/dashboard/:username" element={<Dashboard />} />
+        <Route path="/home/dashboard/admin/:username" element={<Admindashboard />} />
           
         </Route>
       </Routes>

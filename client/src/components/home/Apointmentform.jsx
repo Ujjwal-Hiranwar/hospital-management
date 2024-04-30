@@ -10,6 +10,8 @@ export default function Appointmentform() {
       Doctorname : "",
       Date : "",
       Time : "",
+      Status : "Not Fixed",
+      Appointmentid : Math.floor(Math.random() * 90000) + 10000,
       Doctorpost : ""
     })
     let handleChange= (e)=>{
@@ -33,6 +35,15 @@ export default function Appointmentform() {
       } catch (error) {
         console.log("Error in posting appointment data to backend")
       }
+      setuserAppointmentData({
+        user : username ,
+        Doctorname : "",
+        Date : "",
+        Status : "",
+        Appointmentid : "",
+        Time : "",
+        Doctorpost : ""
+      })
     }
   return (
     
