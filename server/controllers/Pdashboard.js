@@ -3,7 +3,7 @@ const users = require('../models/landingpage')
 
 const sendDataToPatientDashboard = async (req,res)=>{   
     try {
-        console.log(req.body)
+       
         await users.updateOne({username : req.body.key},{$set : {isAdmin : true}})
         let userdata =await users.findOne({username : req.body.key})
         console.log(userdata)
@@ -29,7 +29,8 @@ const sendAppointmentToDatabase = async (req,res)=>{
 const deleteAppointment = async (req,res)=>{
      console.log(req.body)
      try {
-        await users.deleteOne({}) //start here
+        await users.updateOne({username : req.body.username},{$pull : {appointments : {Appointmentid : req.body.appointmentid}}}) //start here
+         console.log("appointment canelled")
         res.json({delete : true})
      } catch (error) {
         console.log("error in deleting the appointment ")

@@ -3,8 +3,9 @@ const axios = require('axios')
 const loginSubmit = async (req,res,)=>{
     try {
         const check =await user.findOne({username : req.body.username})
-        console.log(req.body)
+       
          if(check.password == req.body.password && req.body.adminid=="8367" ){
+            await user.updateOne({username :req.body.username},{$set : {isAdmin : true}})
             res.json({
             isAdmin : true,
             Loggedin : true,
@@ -14,7 +15,7 @@ const loginSubmit = async (req,res,)=>{
             })
          }
        else if(check.password == req.body.password){
-            
+        
            res.json({
             Loggedin : true,
             username : check.username,
@@ -39,7 +40,8 @@ const registerSubmit = async (req,res)=>{
     const registerData = {
         username : req.body.username.toLowerCase(),
         email : req.body.email,
-        password : req.body.password
+        password : req.body.password,
+        isAdmin : false
     }
     try {
         user.insertMany([registerData]);

@@ -19,19 +19,7 @@ export default function Dashboard() {
     appointments : []
   })
   const { username } = useParams();
-   const  cancelAppointment = async (id)=>{
-    
-      try{
-        axios.post(`http://localhost:8000/home/dashboard/cancelappointment`,{
-          appointmentid : id
-        })
-      }
-      catch(err){
-        console.log("error in sending cancel appointment data")
-      }
-        
-     
-  }
+  
   
   try {
     useEffect(()=>{
@@ -66,10 +54,11 @@ export default function Dashboard() {
          showappointment = {setshowappointments}
          showappointmentform={setshowappointmentform}
          showcancelappointment={setcancelappointment} />
-
+         {showappointments === false && showappointmentform === false && cancelappointment === false ?<p className='text-3xl text-center mt-6 ml-20'>DashBoard</p>:null }
+        
       {showappointments === true ?
       <div className='scrollable-container flex flex-col' >
-      <p className='text-3xl text-center mt-6'>Your Appointments</p>
+      <p className='text-3xl text-center mt-6 ml-20'>Your Appointments</p>
        {showappointments === true ? 
        userdata.appointments.slice().reverse().map((appointment,index)=>(
       
@@ -87,7 +76,7 @@ export default function Dashboard() {
        {showappointmentform === true ? <Appointmentform /> : null}
        {cancelappointment === true ?
       <div className='scrollable-container flex flex-col' >
-      <p className='text-3xl text-center mt-6'>Cancel Appointment</p>
+      <p className='text-3xl text-center mt-6 ml-20'>Cancel Appointment</p>
        {cancelappointment === true ? 
        userdata.appointments.slice().reverse().map((appointment,index)=>(
       <div>
@@ -107,7 +96,9 @@ export default function Dashboard() {
               appointmentid : appointment.Appointmentid,
               username  : userdata.username
             }).then((response)=>{
-              console.log(response.data)
+              if(response.data.delete === true){
+                   alert("Appointment is deleted")
+              }
             })
             .catch((err)=>{
               console.log("error in sending appointment data")

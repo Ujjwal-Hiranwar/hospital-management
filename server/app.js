@@ -11,8 +11,11 @@ app.use(express.urlencoded({extended : true}))
 app.use(express.json())
 
 
-app.use("/",landingPageRoutes)
+app.use("/home/dashboard/admin",landingPageRoutes)
 app.use("/home/dashboard",landingPageRoutes)
+app.use("/",landingPageRoutes)
+
+
 
 
 

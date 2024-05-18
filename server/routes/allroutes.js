@@ -2,6 +2,7 @@ const express = require('express')
 const routes = express.Router()
 const landingController = require('../controllers/landingpage')
 const pdashboardController = require('../controllers/Pdashboard')
+const adashboardController = require('../controllers/Adashboard')
 
 routes.route("/loginform").post(landingController.loginSubmit)
 routes.route("/registerform").post(landingController.registerSubmit)
@@ -15,5 +16,8 @@ routes.route("/appointment")
 
 routes.route("/cancelappointment")
 .post(pdashboardController.deleteAppointment)
+
+routes.route("/sendappointmentstoadmin")
+.get(adashboardController.sendAppointmentsToAdmin)
 
 module.exports = routes;

@@ -12,18 +12,35 @@ export default function Sidebar(props) {
           <div className="bg-gray-800 p-4 w-72">
             
             <div className="flex items-center space-x-4">
-              <img className="h-12 w-12 rounded-full" src="https://via.placeholder.com/150" alt="User" />
+              {props.admin == true ? <>
+                <img className="h-12 w-12 rounded-full" src="https://via.placeholder.com/150" alt="User" />
+              <div className="text-white">
+                <p className="text-lg font-medium">Admin</p>
+                
+              </div>
+              </> :<><img className="h-12 w-12 rounded-full" src="https://via.placeholder.com/150" alt="User" />
               <div className="text-white">
                 <p className="text-lg font-medium">{props.username}</p>
                 <p className="text-sm">{props.emailid}</p>
-              </div>
+              </div></>}
+              
             </div>
           </div>
           {/* Sidebar navigation */}
+          
           <div className="bg-gray-700 py-4 flex-grow w-72">
             <nav className="space-y-1">
-              
+              {props.admin === true ?<><button onClick={()=>{
+                 props.showviewappo(true)
+                 props.showaddoc(false)
+              }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 mt-4 py-2 rounded-md block w-full">View Appointments</button>
               <button onClick={()=>{
+               props.showviewappo(false)
+               props.showaddoc(true)
+              }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 mt-4 py-2 rounded-md block w-full">Add Doctor</button>
+              
+              </>
+              :<>  <button onClick={()=>{
                 props.showappointment(true)
                 props.showappointmentform(false)
                 props.showcancelappointment(false)
@@ -39,11 +56,13 @@ export default function Sidebar(props) {
                 props.showappointmentform(false)
                 props.showappointment(false)
              }} className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Cancel Appointment</button>
-             <button className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Our Doctors</button>
+             <button className="text-gray-300 hover:bg-gray-600 hover:text-white px-4 py-2 rounded-md block w-full">Our Doctors</button>  </>}
+            
             </nav>
           </div>
         </div>
-     
+
+        
     </div>
    
     </>

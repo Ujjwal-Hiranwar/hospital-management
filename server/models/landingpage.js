@@ -19,6 +19,10 @@ const registerSchema = mongoose.Schema({
         type : String,
         required : false
     },
+    isAdmin : {
+        type : Boolean,
+        required : false
+    },
     appointments : [{
         type : Object,
         required : false

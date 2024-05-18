@@ -26,8 +26,10 @@ function App() {
        
         
         <Route path="/home/dashboard/:username" element={<Dashboard />} />
+        <Route path="/home/dashboard/admin" element={<p className='text-3xl text-center mt-6'>You are not a admin</p>} />
         <Route path="/home/dashboard/admin/:username" element={<Admindashboard />} />
-          
+        
+        
         </Route>
       </Routes>
       </BrowserRouter>
