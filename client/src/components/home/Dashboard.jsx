@@ -80,15 +80,15 @@ export default function Dashboard() {
        {cancelappointment === true ? 
        userdata.appointments.slice().reverse().map((appointment,index)=>(
       <div>
-        {appointment.Status == "Not Fixed" ?<Appointmentcard 
+        {appointment.Status == "Not Fixed" ?<><Appointmentcard 
         docname={appointment.Doctorname} 
        post={appointment.Doctorpost}
         date={appointment.Date} 
         time={appointment.Time} 
         appointmentid={appointment.Appointmentid}
         status={appointment.Status}
-        key={index}/>  : null}
-            <div className="flex justify-end">
+        key={index}/> 
+        <div className="flex justify-end">
       <button
         onClick={()=>{
           try{
@@ -98,6 +98,7 @@ export default function Dashboard() {
             }).then((response)=>{
               if(response.data.delete === true){
                    alert("Appointment is deleted")
+                   window.location.reload()
               }
             })
             .catch((err)=>{
@@ -114,6 +115,8 @@ export default function Dashboard() {
         Cancel Appointment
       </button>
     </div>
+        </> : null}
+            
        
 </div>
 ))  : null}

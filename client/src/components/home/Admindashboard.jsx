@@ -61,6 +61,7 @@ try {
               }).then((responsee)=>{
                
                 alert('Request accepted')
+                window.location.reload()
               })
             } catch (error) {
               
