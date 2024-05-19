@@ -23,9 +23,21 @@ const sendAppointmentsToAdmin =async (req,res)=>{
       catch(err){
             console.log(err)
       }
-      
-      
+   
+}
+const acceptAppointment =async (req,res)=>{
+try {
+    
+//      users.updateMany({"appointments.Appointmentid" : req.body.appointmentid},{$set : {"appointments.$.Status" : "Fixed"}})
+ await users.updateMany({appointments : {$elemMatch : {Appointmentid : req.body.appointmentid}}},
+      {$set : {"appointments.$.Status"  : "Fixed"}}
+)     
+ res.json({accept : true})
+   
+} catch (error) {
+      console.log(error)
+}
+   
 }
 
-
-module.exports = {sendAppointmentsToAdmin}
+module.exports = {sendAppointmentsToAdmin,acceptAppointment}

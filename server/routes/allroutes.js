@@ -19,5 +19,6 @@ routes.route("/cancelappointment")
 
 routes.route("/sendappointmentstoadmin")
 .get(adashboardController.sendAppointmentsToAdmin)
+routes.route("/acceptappointment").post(adashboardController.acceptAppointment)
 
 module.exports = routes;
